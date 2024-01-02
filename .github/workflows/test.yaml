@@ -1,13 +1,19 @@
 name: my workflow
+
 on: push
+
 jobs:
   build:
     runs-on: windows-latest
+
     steps:
     - uses: actions/checkout@v2
+
     - name: Set env
       shell: powershell
-      run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+      run: |
+        echo "GITHUB_SHA_SHORT=$env:GITHUB_SHA.Substring(0,6)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
     - name: Test
       shell: powershell
-      run: echo $GITHUB_SHA_SHORT
+      run: echo $env:GITHUB_SHA_SHORT
