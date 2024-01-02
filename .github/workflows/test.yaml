@@ -14,7 +14,7 @@ jobs:
       run: |
         ni abc.txt
         echo "arjun goel" >> abc.txt
-        echo abc.txt
+        cat abc.txt
         
     - name: Set env
       shell: powershell
