@@ -1,0 +1,29 @@
+name: Set Environment Variable Example
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  set-variable:
+    runs-on: ubuntu-latest
+    
+    env:
+      TAG_VERSION: ""
+
+    steps:
+    
+    - name: Set initial empty environment variable
+      run: echo "${{ env.TAG_VERSION }}" >> $GITHUB_ENV
+
+    - name: Show initial value
+      run: echo ${{ env.TAG_VERSION }}
+
+    - name: Update and set output for the next steps
+      id: set-output
+      run: |
+        echo "v1.0.1-UAT" >> $GITHUB_ENV
+
+    - name: Show updated value
+      run: echo ${{ env.TAG_VERSION }}
