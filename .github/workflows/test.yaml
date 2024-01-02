@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: run action - 1st
         shell: powershell
-        run: echo ${{ env.MY_ENV }} 
+        run: echo ${{ env.MY_ENV }}
+        
       - name: update env
+        shell: powershell
         run: echo "::set-env name=MY_ENV::env value 02"
