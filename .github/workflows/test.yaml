@@ -9,6 +9,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: create new file
+      shell: powershell
+      run: |
+        ni abc.txt
+        echo "arjun goel" >> abc.txt
+        echo abc.txt
+        
     - name: Set env
       shell: powershell
       run: |
