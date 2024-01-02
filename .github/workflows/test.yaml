@@ -12,6 +12,7 @@ jobs:
         shell: powershell
         run: echo ${{ env.MY_ENV }}
         
-      - name: update env
-        shell: powershell
-        run: echo "::set-env name=MY_ENV::env value 02"
+      - name: Set environment variable using Environment File
+        run: |
+          echo "MY_ENV=env value 02" >> $GITHUB_ENV
+          echo $GITHUB_ENV
