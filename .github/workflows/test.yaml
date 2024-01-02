@@ -4,18 +4,12 @@ on:
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     env:
       MY_ENV: "env value 01"
     steps:
       - name: run action - 1st
-        uses: actionOrg/actionRepo@master
-        with:
-          input: ${{ env.MY_ENV }}  # the input value is "env value 01"
+        shell: powershell
+        run: echo ${{ env.MY_ENV }} 
       - name: update env
         run: echo "::set-env name=MY_ENV::env value 02"
-
-      - name: run action - 2nd
-        uses: actionOrg/actionRepo@master
-        with:
-          input: ${{ env.MY_ENV }}  # the input value is "env value 02"
