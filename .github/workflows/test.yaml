@@ -1,18 +1,11 @@
-on:
-  push:
-    branches: [ "main" ]
+name: my workflow
+on: push
 jobs:
-  test:
-    name: Test
-    runs-on: windows-latest
-    env:
-      MY_ENV: "env value 01"
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - name: run action - 1st
-        shell: powershell
-        run: echo ${{ env.MY_ENV }}
-        
-      - name: Set environment variable using Environment File
-        run: |
-          echo "MY_ENV=env value 02" >> $GITHUB_ENV
-          echo $GITHUB_ENV
+    - uses: actions/checkout@v2
+    - name: Set env
+      run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+    - name: Test
+      run: echo $GITHUB_SHA_SHORT
