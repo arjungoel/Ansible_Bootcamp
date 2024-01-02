@@ -19,7 +19,7 @@ jobs:
       shell: powershell
       run: |
         $tagVersion = Get-Content -Path abc.txt
-        echo "GITHUB_TAG_VERSION=$tagVersion" >> $env:GITHUB_ENV
+        echo "GITHUB_TAG_VERSION=$tagVersion" >> ${{ env.GITHUB_ENV }}
 
     - name: Test
       shell: powershell
